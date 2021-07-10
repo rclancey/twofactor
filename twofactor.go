@@ -112,6 +112,13 @@ func (a *Auth) CheckResetCode(code string) error {
 	return nil
 }
 
+func (a *Auth) Get2FACode() string {
+	if a.TwoFactor == nil {
+		return ""
+	}
+	return a.TwoFactor.GenCode()
+}
+
 func (a *Auth) Check2FA(code string) error {
 	if a.TwoFactor == nil {
 		return nil
@@ -122,6 +129,10 @@ func (a *Auth) Check2FA(code string) error {
 		return nil
 	}
 	return a.TwoFactor.Auth(code)
+}
+
+func (a *Auth) Has2FA() bool {
+	return a.TwoFactor != nil
 }
 
 func (a *Auth) init2FA() error {
