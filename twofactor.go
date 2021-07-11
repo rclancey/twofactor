@@ -16,12 +16,12 @@ import (
 )
 
 type Auth struct {
-	Password string `json:"password"`
-	ResetCode *string `json:"reset_code"`
+	Password         string     `json:"password"`
+	ResetCode        *string    `json:"reset_code"`
 	ResetCodeExpires *time.Time `json:"reset_code_expires"`
-	TwoFactor *TwoFactor `json:"two_factor"`
-	InitTwoFactor *TwoFactor `json:"init_two_factor"`
-	dirty bool
+	TwoFactor        *TwoFactor `json:"two_factor"`
+	InitTwoFactor    *TwoFactor `json:"init_two_factor"`
+	dirty            bool
 }
 
 func NewAuth(password string, inputs ...string) (*Auth, error) {
@@ -170,7 +170,7 @@ func (a *Auth) Complete2FA(code string) error {
 }
 
 type TwoFactor struct {
-	Secret string `json:"secret"`
+	Secret       string   `json:"secret"`
 	RecoveryKeys []string `json:"recovery_keys"`
 }
 
